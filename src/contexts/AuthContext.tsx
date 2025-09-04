@@ -59,64 +59,10 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         }
       }
       
-      // If no proper response, try with demo data for testing
-      if (credentials.email && credentials.password) {
-        // Demo user for testing
-        const demoUser: User = {
-          id: '1',
-          email: credentials.email,
-          name: 'Demo User',
-          role: credentials.email.includes('admin') ? 'super_admin' as any : 'receptionist' as any,
-          created_at: new Date().toISOString(),
-          updated_at: new Date().toISOString()
-        };
-        
-        const demoToken = 'demo_token_' + Date.now();
-        
-        localStorage.setItem('auth_token', demoToken);
-        localStorage.setItem('user_data', JSON.stringify(demoUser));
-        
-        setAuthState({
-          user: demoUser,
-          token: demoToken,
-          isAuthenticated: true,
-          isLoading: false,
-        });
-        
-        return true;
-      }
-      
       setAuthState(prev => ({ ...prev, isLoading: false }));
       return false;
     } catch (error) {
       console.error('Login error:', error);
-      
-      // Fallback to demo mode if backend is not responding
-      if (credentials.email && credentials.password) {
-        const demoUser: User = {
-          id: '1',
-          email: credentials.email,
-          name: 'Demo User',
-          role: credentials.email.includes('admin') ? 'super_admin' as any : 'receptionist' as any,
-          created_at: new Date().toISOString(),
-          updated_at: new Date().toISOString()
-        };
-        
-        const demoToken = 'demo_token_' + Date.now();
-        
-        localStorage.setItem('auth_token', demoToken);
-        localStorage.setItem('user_data', JSON.stringify(demoUser));
-        
-        setAuthState({
-          user: demoUser,
-          token: demoToken,
-          isAuthenticated: true,
-          isLoading: false,
-        });
-        
-        return true;
-      }
-      
       setAuthState(prev => ({ ...prev, isLoading: false }));
       return false;
     }
