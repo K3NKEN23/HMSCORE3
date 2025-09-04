@@ -1,7 +1,7 @@
 import { UserRole, ModulePermissions } from '../types';
 
 // API Configuration - Updated for new ngrok URL
-export const API_BASE_URL = 'https://6f45feab8f9c.ngrok-free.app';
+export const API_BASE_URL = 'https://6f45feab8f9c.ngrok-free.app/php-backend';
 
 // Role-based permissions mapping
 export const ROLE_PERMISSIONS: Record<UserRole, ModulePermissions> = {
